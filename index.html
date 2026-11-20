@@ -29,9 +29,9 @@
             <div class="hidden items-center gap-1 md:flex">
                 <a href="/"
                    class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-[#0B2D6B] transition">Beranda</a>
-                <a href="/#filosofi"
+                <a href="/filosofi"
                    class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-[#0B2D6B] transition">Filosofi & Visi</a>
-                <a href="/#nilai"
+                <a href="/nilai"
                    class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-[#0B2D6B] transition">Nilai Perusahaan</a>
                 <a href="katalog.html"
                    class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-[#0B2D6B] transition">Katalog</a>
@@ -64,9 +64,9 @@
             <div class="mt-3 flex flex-col gap-1">
                 <a href="/"
                    class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Beranda</a>
-                <a href="/#filosofi"
+                <a href="/filosofi"
                    class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Filosofi & Visi Misi</a>
-                <a href="/#nilai"
+                <a href="/nilai"
                    class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Nilai Perusahaan</a>
                 <a href="katalog.html"
                    class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Katalog</a>
@@ -336,8 +336,8 @@
                     <p class="text-xs font-black uppercase tracking-widest text-blue-300 mb-4">Navigasi</p>
                     <div class="flex flex-col gap-2 text-sm">
                         <a href="/" class="text-blue-100 hover:text-white transition">Beranda</a>
-                        <a href="/#filosofi" class="text-blue-100 hover:text-white transition">Filosofi & Visi Misi</a>
-                        <a href="/#nilai" class="text-blue-100 hover:text-white transition">Nilai Perusahaan</a>
+                        <a href="/filosofi" class="text-blue-100 hover:text-white transition">Filosofi & Visi Misi</a>
+                        <a href="/nilai" class="text-blue-100 hover:text-white transition">Nilai Perusahaan</a>
                         <a href="katalog.html" class="text-blue-100 hover:text-white transition">Katalog Produk</a>
                     </div>
                 </div>
@@ -385,6 +385,20 @@
             iconOpen.classList.toggle('hidden');
             iconClose.classList.toggle('hidden');
         });
+
+        const sectionRoutes = {
+            '/filosofi': 'filosofi',
+            '/nilai': 'nilai',
+            '#filosofi': 'filosofi',
+            '#nilai': 'nilai'
+        };
+        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        const sectionId = sectionRoutes[path] || sectionRoutes[window.location.hash];
+        const section = sectionId && document.getElementById(sectionId);
+        if (sectionId && window.location.hash === '#' + sectionId) {
+            window.history.replaceState(null, '', '/' + sectionId);
+        }
+        if (section) section.scrollIntoView();
     </script>
     <script src="assets/site.js"></script>
 </body>
